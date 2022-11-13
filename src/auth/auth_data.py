@@ -7,16 +7,7 @@ auth_data = {
         "browser": "disco",
         "device": "disco"
       },
-      "compress": True,
-      "large_threshold": 250,
-      "shard": [0, 1],
-      "presence": {
-        "activities": [{ "name": "Cards Against Humanity", "type": 0 }],
-        "status": "online",
-        "since": 91879201,
-        "afk": False
-      },
-    "intents": 1
+    "intents": 513
   }
 }
 

@@ -1,8 +1,9 @@
 import websockets
+import pprint as pp
 import json
 import asyncio
 import datetime as dt
-import src.auth.auth_data as aud
+from src.auth.auth_data import *
 
 
 class Gateway:
@@ -27,11 +28,6 @@ class Gateway:
     pass
 
 
-  async def auth(self, ws):    
-    await ws.send(json.dumps('auth_data'))
-    return ws
-
-
   async def first_connect(self, ws, d):
     print(f'{"-"*20} => {dt.datetime.today().strftime("%H:%M:%S")}\nheartbeat event')
 
@@ -47,14 +43,12 @@ class Gateway:
 
     buffer = []
 
-    await ws.send(json.dumps(aud.auth_data))
+    await ws.send(json.dumps(auth_data))
+
     buffer.append(await ws.recv())
     buffer.append(await ws.recv())
     
-    print(buffer)
-
-    await asyncio.sleep(2)
-
+    for data in map(lambda el: json.loads(el), buffer): pp.pprint(data)
     return ws
 
 
@@ -63,14 +57,13 @@ class Gateway:
     async with websockets.connect(self.gateway_url) as ws:
 
       response = json.loads(await ws.recv())
-      interaval = response['d']['heartbeat_interval']
 
       print(f'First connect data\n{response}')
       
       if response['op'] == 10:
-        await self.first_connect(ws, 251)
+        await self.first_connect(ws, 0)
         await self.auth_app(ws)
 
         while True:
-          await self.first_connect(ws, 251)
+          await self.first_connect(ws, 0)
 
