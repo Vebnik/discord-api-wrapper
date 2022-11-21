@@ -1,3 +1,4 @@
+import pprint as pp
 import requests
 import json
 
@@ -6,31 +7,24 @@ class ChannelsAPI:
 
   token = 'OTY1MzA2NTMxNDc2Mjc5MzQ2.GcqOQQ.nph61JZSy22zJ8X5DsP4pPc-yKPvPYILDFDv5g'
 
+  root_api_url = 'https://discord.com/api/v9/'
+
   def __init__(self):
     pass
 
 
-  def post_message(self, channels: str, data: dict):
+  def send_message(self, data, channel):
+
     headers = {
-      'authorization': self.token,
+      'authorization': f"Bot {self.token}",
       'content-type': 'application/json'
     }
+  
+    data = {
+      "content": data,
+      "tts": False
+    }
+    
+    response = requests.post(f'{self.root_api_url}/channels/{channel}/messages', headers=headers, data=json.dumps(data))
+    pp.pprint(response.json())
 
-    res = requests.post(f'https://ptb.discord.com/api/v9/channels/{channels}/messages', json.dumps(data), headers=headers)
-
-    print(res.json())
-
-
-
-ch_api = ChannelsAPI()
-
-msg_data = {
-  "content": "Hello, World!",
-  "tts": False,
-  "embeds": [{
-    "title": "Hello, Embed!",
-    "description": "This is an embedded message."
-  }]
-}
-
-ch_api.post_message('968599370721271838', msg_data)

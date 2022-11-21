@@ -1,11 +1,9 @@
 import websockets
 import pprint as pp
 import json
-import datetime as dt
 import asyncio
-import threading as thr
-from time import sleep
 from src.auth.auth_data import *
+import src.event.event_handler as evt
 
 
 class Gateway:
@@ -32,8 +30,6 @@ class Gateway:
 
 
   async def auth_app(self):
-    print(f'{"-"*20} => subscribe event')
-
     buffer = []
 
     await self.ws.send(json.dumps(auth_data))
@@ -46,7 +42,7 @@ class Gateway:
     with open('src/data/auth_response.json', 'w+', encoding='utf-8') as file: 
       file.write(json.dumps(buffer[0], indent=2))
 
-    print('Write nsubscribe data')
+    print(f'subscribe event => {buffer[0]["d"]["resume_gateway_url"]}\n{"-"*20}')
 
     return self.ws
 
@@ -55,14 +51,19 @@ class Gateway:
     while True:
       await asyncio.sleep(interval)
       await self.ws.send(json.dumps({"op": 1,"d": 0}))
-      print('Hearbeat event')
+      print('Heartbeat event')
 
 
   async def event_listener(self):
     while True:
-      event = await self.ws.recv()
-      print(event)
-    
+      try:
+
+        event = json.loads(await self.ws.recv())
+        if event['t']: evt.event_handler(event)
+      except:
+
+        print('Error in event listener'); exit()
+
 
   async def get_gateway(self) -> None:
 
@@ -70,11 +71,13 @@ class Gateway:
 
     response = json.loads(await self.ws.recv())
 
-    print(f'First connect data\n{response}')
+    print('-'*20)
+    print(f'First connect data\nOpCode: {response["op"]}\nInterval: {response["d"]["heartbeat_interval"]}')
+    print('-'*20)
     
     if response['op'] == 10:
 
-      asyncio.ensure_future(self.heartbeat(10))
+      asyncio.ensure_future(self.heartbeat(30))
 
       await self.first_connect(0)
       await self.auth_app()
