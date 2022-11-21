@@ -1,0 +1,48 @@
+[
+    {
+        "t": "MESSAGE_CREATE",
+        "s": 4,
+        "op": 0,
+        "d": {
+            "type": 0,
+            "tts": false,
+            "timestamp": "2022-11-21T12:09:16.194000+00:00",
+            "referenced_message": null,
+            "pinned": false,
+            "nonce": "1044222963861159936",
+            "mentions": [],
+            "mention_roles": [],
+            "mention_everyone": false,
+            "member": {
+                "roles": ["861173080319590400"],
+                "premium_since": null,
+                "pending": false,
+                "nick": null,
+                "mute": false,
+                "joined_at": "2017-12-23T10:24:16.247000+00:00",
+                "flags": 0,
+                "deaf": false,
+                "communication_disabled_until": null,
+                "avatar": null
+            },
+            "id": "1044222967573393418",
+            "flags": 0,
+            "embeds": [],
+            "edited_timestamp": null,
+            "content": "",
+            "components": [],
+            "channel_id": "968599370721271838",
+            "author": {
+                "username": "frenjcock",
+                "public_flags": 256,
+                "id": "324889109355298829",
+                "discriminator": "9512",
+                "avatar_decoration": null,
+                "avatar": "69ef2affb4955733421722ebe21583ed"
+            },
+            "attachments": [],
+            "guild_id": "394072712785690624"
+        }
+    }
+    
+]
