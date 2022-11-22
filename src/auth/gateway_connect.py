@@ -45,14 +45,20 @@ class Gateway:
   async def heartbeat(self, interval):
     while True:
       await asyncio.sleep(interval)
-      await self.ws.send(json.dumps({"op": 1,"d": 0}))
+      await self.ws.send(json.dumps({"op": 1,"d": None}))
       logger.info('Heartbeat event')
 
 
   async def event_listener(self):
     while True:
       event = json.loads(await self.ws.recv())
-      if event['t']: asyncio.ensure_future(evt.event_handler(event))
+
+      if event['t']: 
+        asyncio.ensure_future(evt.event_handler(event))
+        continue
+
+      logger.info(event)
+      
       # try:
       #   event = json.loads(await self.ws.recv())
       #   if event['t']: asyncio.ensure_future(evt.event_handler(event))
