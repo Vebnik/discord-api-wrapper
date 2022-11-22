@@ -11,10 +11,6 @@ class Gateway:
   gateway_url = 'wss://gateway.discord.gg/?v=10&encoding=json'
   auth_data = { 'token': None, 'app_id': None, 'secret_key': None }
 
-  loop = None
-  ws = None
-  asyncio = None
-
   
   def __init__(self):
     print('init gateway')
