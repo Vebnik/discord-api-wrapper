@@ -1,9 +1,9 @@
 import websockets
-import pprint as pp
 import json
 import asyncio
 from src.auth.auth_data import *
 import src.event.event_handler as evt
+import src.tools.logger as logger
 
 
 class Gateway:
@@ -13,7 +13,7 @@ class Gateway:
 
   
   def __init__(self):
-    print('init gateway')
+    logger.info('init gateway')
     asyncio.run(self.get_gateway())
 
 
@@ -38,8 +38,7 @@ class Gateway:
     with open('src/data/auth_response.json', 'w+', encoding='utf-8') as file: 
       file.write(json.dumps(buffer[0], indent=2))
 
-    print(f'subscribe event => {buffer[0]["d"]["resume_gateway_url"]}\n{"-"*20}')
-
+    logger.info(f'subscribe event => {buffer[0]["d"]["resume_gateway_url"]}\n{"-"*20}')
     return self.ws
 
 
@@ -47,18 +46,18 @@ class Gateway:
     while True:
       await asyncio.sleep(interval)
       await self.ws.send(json.dumps({"op": 1,"d": 0}))
-      print('Heartbeat event')
+      logger.info('Heartbeat event')
 
 
   async def event_listener(self):
     while True:
-      try:
-
-        event = json.loads(await self.ws.recv())
-        if event['t']: evt.event_handler(event)
-      except:
-
-        print('Error in event listener'); exit()
+      event = json.loads(await self.ws.recv())
+      if event['t']: asyncio.ensure_future(evt.event_handler(event))
+      # try:
+      #   event = json.loads(await self.ws.recv())
+      #   if event['t']: asyncio.ensure_future(evt.event_handler(event))
+      # except Exception:
+      #   logger.error(Exception); exit()
 
 
   async def get_gateway(self) -> None:
@@ -67,9 +66,7 @@ class Gateway:
 
     response = json.loads(await self.ws.recv())
 
-    print('-'*20)
-    print(f'First connect data\nOpCode: {response["op"]}\nInterval: {response["d"]["heartbeat_interval"]}')
-    print('-'*20)
+    logger.connect_log(response)
     
     if response['op'] == 10:
 

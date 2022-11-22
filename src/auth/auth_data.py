@@ -7,7 +7,7 @@ auth_data = {
       "browser": "disco",
       "device": "disco"
     },
-  "intents": 513
+  "intents": 33607
   }
 }
 

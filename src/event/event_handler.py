@@ -1,21 +1,15 @@
-import pprint as pp
-import src.api.channels_work as ch_work
+import src.tools.logger as logger
 from src.auth.auth_data import *
-import json
+import src.decorators.commands as commands
 
 
+@commands.commands
 def message_event(event_data):
-
-  API = ch_work.ChannelsAPI()
-
-  pp.pprint(event_data)
-
-  if event_data['d']['author']['id'] != '965306531476279346':
-    channel = event_data['d']['channel_id']
-    API.send_message('Hello from python, bitch !', channel)
+  logger.info_event('Recv MESSAGE_CREATE event')
+  pass
 
   
-def event_handler(event_data):
+async def event_handler(event_data):
 
   event_type = event_data['t']
 

@@ -9,8 +9,7 @@ class ChannelsAPI:
 
   root_api_url = 'https://discord.com/api/v9/'
 
-  def __init__(self):
-    pass
+  def __init__(self): pass
 
 
   def send_message(self, data, channel):
@@ -26,5 +25,5 @@ class ChannelsAPI:
     }
     
     response = requests.post(f'{self.root_api_url}/channels/{channel}/messages', headers=headers, data=json.dumps(data))
-    pp.pprint(response.json())
+    pp.pprint(response.status_code)
 
