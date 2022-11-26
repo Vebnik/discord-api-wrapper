@@ -1,4 +1,5 @@
 import src.auth.gateway_connect as Gtw
+import src.tools.get_env as env
 
 
 def init_app():

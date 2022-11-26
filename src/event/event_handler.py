@@ -6,7 +6,6 @@ import src.decorators.commands as commands
 @commands.commands
 def message_event(event_data):
   logger.info_event('Recv MESSAGE_CREATE event')
-  pass
 
   
 async def event_handler(event_data):
@@ -19,4 +18,3 @@ async def event_handler(event_data):
     case '2': pass
 
   return 0
-

@@ -15,17 +15,16 @@ def commands_find(content: str):
 
 def commands(func):
   def inner(args):
-    mesasge = msg.Message(args)
+    try:
+      mesasge = msg.Message(args)
 
-    if mesasge.get_content().startswith('!'):
-      func_commands = commands_find(mesasge.get_content())
-      func_commands(mesasge)
+      if mesasge.get_content().startswith('!'):
+        func_commands = commands_find(mesasge.get_content())
+        func_commands(mesasge)
 
-    return func(args)
-    # try:
-
-    # except:
-    #   logger.error('Error in commands')
-    #   return func(args)
+      return func(args)
+    except:
+      logger.error('Error in commands')
+      return func(args)
 
   return inner

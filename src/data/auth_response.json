@@ -17,8 +17,8 @@
       "avatar": "214c1c89229f5b7d8602efc22115f6e3"
     },
     "session_type": "normal",
-    "session_id": "79a0f9249ccce3513ac75df62cf917c8",
-    "resume_gateway_url": "wss://gateway-us-east1-b.discord.gg",
+    "session_id": "a79e477e8c32d65548fe9bebf8fc62a3",
+    "resume_gateway_url": "wss://gateway-us-east1-c.discord.gg",
     "relationships": [],
     "private_channels": [],
     "presences": [],
@@ -41,7 +41,7 @@
       "flags": 565248
     },
     "_trace": [
-      "[\"gateway-prd-us-east1-b-mpjf\",{\"micros\":208182,\"calls\":[\"id_created\",{\"micros\":1028,\"calls\":[]},\"session_lookup_time\",{\"micros\":308,\"calls\":[]},\"session_lookup_finished\",{\"micros\":12,\"calls\":[]},\"discord-sessions-blue-prd-2-190\",{\"micros\":205645,\"calls\":[\"start_session\",{\"micros\":145120,\"calls\":[\"discord-api-649ffc7cc5-thsj8\",{\"micros\":134741,\"calls\":[\"get_user\",{\"micros\":50737},\"get_guilds\",{\"micros\":10373},\"send_scheduled_deletion_message\",{\"micros\":10},\"guild_join_requests\",{\"micros\":1982},\"authorized_ip_coro\",{\"micros\":9}]}]},\"starting_guild_connect\",{\"micros\":49,\"calls\":[]},\"presence_started\",{\"micros\":318,\"calls\":[]},\"guilds_started\",{\"micros\":75,\"calls\":[]},\"guilds_connect\",{\"micros\":1,\"calls\":[]},\"presence_connect\",{\"micros\":60015,\"calls\":[]},\"connect_finished\",{\"micros\":60020,\"calls\":[]},\"build_ready\",{\"micros\":24,\"calls\":[]},\"optimize_ready\",{\"micros\":1,\"calls\":[]},\"split_ready\",{\"micros\":1,\"calls\":[]},\"clean_ready\",{\"micros\":32,\"calls\":[]}]}]}]"
+      "[\"gateway-prd-us-east1-c-3x2g\",{\"micros\":45312,\"calls\":[\"id_created\",{\"micros\":1487,\"calls\":[]},\"session_lookup_time\",{\"micros\":238,\"calls\":[]},\"session_lookup_finished\",{\"micros\":19,\"calls\":[]},\"discord-sessions-blue-prd-2-281\",{\"micros\":42562,\"calls\":[\"start_session\",{\"micros\":41091,\"calls\":[\"discord-api-9f977db9f-pcsjx\",{\"micros\":36072,\"calls\":[\"get_user\",{\"micros\":8847},\"get_guilds\",{\"micros\":3484},\"send_scheduled_deletion_message\",{\"micros\":12},\"guild_join_requests\",{\"micros\":133},\"authorized_ip_coro\",{\"micros\":12}]}]},\"starting_guild_connect\",{\"micros\":57,\"calls\":[]},\"presence_started\",{\"micros\":241,\"calls\":[]},\"guilds_started\",{\"micros\":73,\"calls\":[]},\"guilds_connect\",{\"micros\":1,\"calls\":[]},\"presence_connect\",{\"micros\":1053,\"calls\":[]},\"connect_finished\",{\"micros\":1057,\"calls\":[]},\"build_ready\",{\"micros\":19,\"calls\":[]},\"optimize_ready\",{\"micros\":1,\"calls\":[]},\"split_ready\",{\"micros\":0,\"calls\":[]},\"clean_ready\",{\"micros\":22,\"calls\":[]}]}]}]"
     ]
   }
 }

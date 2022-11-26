@@ -1,7 +1,9 @@
+from src.tools.get_env import get_env
+
 auth_data = {
   "op": 2,
   "d": {
-    "token": "OTY1MzA2NTMxNDc2Mjc5MzQ2.GcqOQQ.nph61JZSy22zJ8X5DsP4pPc-yKPvPYILDFDv5g",
+    "token": get_env('BOT_TOKEN'),
     "properties": {
       "os": "linux",
       "browser": "disco",
