@@ -1,5 +1,5 @@
 import pprint as pp
-import src.tools.logger as logger
+import logging
 import src.commands.commands_scoop as cmds
 import src.interface.Message as msg
 
@@ -24,7 +24,7 @@ def commands(func):
 
       return func(args)
     except:
-      logger.error('Error in commands')
+      logging.error('Error in commands')
       return func(args)
 
   return inner

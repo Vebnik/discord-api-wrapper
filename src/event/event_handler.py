@@ -1,11 +1,11 @@
-import src.tools.logger as logger
+import logging
 from src.auth.auth_data import *
 import src.decorators.commands as commands
 
 
 @commands.commands
 def message_event(event_data):
-  logger.info_event('Recv MESSAGE_CREATE event')
+  logging.info('Recv MESSAGE_CREATE event')
 
   
 async def event_handler(event_data):
@@ -17,4 +17,5 @@ async def event_handler(event_data):
     case '1': pass
     case '2': pass
 
-  return 0
+  return logging.error('Not found event match')
+
